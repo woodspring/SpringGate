@@ -22,19 +22,19 @@ public class TreeNode<T extends Comparable<T>> {
 	
 	public boolean insertSeq( TreeNode<T> currNode, TreeNode<T> theNode) {
 		if  (theNode == null) return true;
-		logger.info("in currNode:"+ currNode.value+" theNode:"+ theNode.value()+"-----------------------");
+		//logger.info("in currNode:"+ currNode.value+" theNode:"+ theNode.value()+"-----------------------");
 		if (currNode.left() ==null) {
-			logger.info("in 1 currNode:"+ currNode.value+" theNode:"+ theNode.value()+"-----------------------");
+			//logger.info("in 1 currNode:"+ currNode.value+" theNode:"+ theNode.value()+"-----------------------");
 			currNode.setLeft(theNode);
 		} else if (currNode.right() == null) {
-logger.info("in 2 currNode:"+ currNode.value+" theNode:"+ theNode.value()+"-----------------------");			
+//logger.info("in 2 currNode:"+ currNode.value+" theNode:"+ theNode.value()+"-----------------------");			
 			currNode.setRight(theNode);
 		} else if (currNode.left() != null && currNode.right() != null) {
 			int leftNum = currNode.countNode( currNode.left(), 0);
 			int rightNum = currNode.countNode( currNode.right(), 0);
-			logger.info("theNode:"+theNode+" value:" + currNode.value()+" leftNum:" + leftNum+" rightNum:"+ rightNum);
+//			logger.info("theNode:"+theNode+" value:" + currNode.value()+" leftNum:" + leftNum+" rightNum:"+ rightNum);
 			if ( (leftNum == rightNum)) { //|| (((leftNum - rightNum) %2) != 0) ) {
-				logger.info("Here theNode:"+theNode+" value:" + currNode.value()+" leftNum:" + leftNum+" rightNum:"+ rightNum);
+//				logger.info("Here theNode:"+theNode+" value:" + currNode.value()+" leftNum:" + leftNum+" rightNum:"+ rightNum);
 			 currNode.insertSeq( currNode.left(), theNode);
 			} else {
 				
@@ -48,10 +48,10 @@ logger.info("in 2 currNode:"+ currNode.value+" theNode:"+ theNode.value()+"-----
 					}
 				}
 				if ( isLeft) {
-					logger.info("COMPLEX-1- base:"+base+" theNode:"+theNode+" value:" + currNode.value()+" leftNum:" + leftNum+" rightNum:"+ rightNum);
+//					logger.info("COMPLEX-1- base:"+base+" theNode:"+theNode+" value:" + currNode.value()+" leftNum:" + leftNum+" rightNum:"+ rightNum);
 					currNode.insertSeq(currNode.left(), theNode);
 				}	else {
-					logger.info("COMPLEX-2- base:"+base+ " theNode:"+theNode+" value:" + currNode.value()+" leftNum:" + leftNum+" rightNum:"+ rightNum);
+//					logger.info("COMPLEX-2- base:"+base+ " theNode:"+theNode+" value:" + currNode.value()+" leftNum:" + leftNum+" rightNum:"+ rightNum);
 					currNode.insertSeq(currNode.right(), theNode);
 				}
 //				
@@ -115,22 +115,22 @@ logger.info("in 2 currNode:"+ currNode.value+" theNode:"+ theNode.value()+"-----
 	public int countNode(TreeNode<T> currNode, int count) {
 		int retInt =0;
 		if (currNode == null) {
-			logger.info("countNode-00, currNode:null, count:"+count);
+//			logger.info("countNode-00, currNode:null, count:"+count);
 			return 0;
 		}
-		logger.info("countNode-0, currNode:"+ currNode.value() + "count:"+count);
+//		logger.info("countNode-0, currNode:"+ currNode.value() + "count:"+count);
 		//if ( currNode.left() != null) {
 			retInt = 1 +  currNode.countNode(currNode.left(), ++count);
-		logger.info("countNode-1, currNode:"+ currNode.value()+" retInt:"+retInt+" count:"+count);
+//		logger.info("countNode-1, currNode:"+ currNode.value()+" retInt:"+retInt+" count:"+count);
 		//}
 		retInt += currNode.countNode( currNode.right(), ++count);
-		logger.info("countNode-2, currNode:"+ currNode.value()+" retInt:"+retInt+" count:"+count);
+//		logger.info("countNode-2, currNode:"+ currNode.value()+" retInt:"+retInt+" count:"+count);
 		return retInt;
 	}
 	public void insertSorting(TreeNode<T> parent, TreeNode<T> currNode, TreeNode<T> theNode) {
 		if (theNode == null) return;
 		if (currNode == null) {
-			logger.info("insertSorting-00, parent:"+parent.value()+"currNode:null, theNode:"+ theNode.value());
+//			logger.info("insertSorting-00, parent:"+parent.value()+"currNode:null, theNode:"+ theNode.value());
 			if (parent.value().compareTo( theNode.value()) > 0)
 				parent.setLeft(theNode);
 			else 
@@ -139,10 +139,10 @@ logger.info("in 2 currNode:"+ currNode.value+" theNode:"+ theNode.value()+"-----
 		}
 		int compared = currNode.value().compareTo( theNode.value());
 		if ( compared > 0) {
-			logger.info("insertSorting-1, compare:"+ compared+" currNode:"+ currNode.value()+" theNode:"+ theNode.value());
+//			logger.info("insertSorting-1, compare:"+ compared+" currNode:"+ currNode.value()+" theNode:"+ theNode.value());
 			currNode.insertSorting( currNode, currNode.left(),theNode);
 		} else if ( compared < 0 ) {
-			logger.info("insertSorting-2, compare:"+ compared+" currNode:"+ currNode.value()+" theNode:"+ theNode.value());
+//			logger.info("insertSorting-2, compare:"+ compared+" currNode:"+ currNode.value()+" theNode:"+ theNode.value());
 			
 			currNode.insertSorting( currNode, currNode.right(), theNode);
 		}

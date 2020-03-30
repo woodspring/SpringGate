@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import woodspring.springgate.model.GateBinaryTree;
+import woodspring.springgate.model.HeapSort;
 import woodspring.springgate.service.GateService;
 
 @Service
@@ -17,6 +18,9 @@ public class GatewayServiceImp implements GateService {
 	
 	@Autowired
 	GateBinaryTree binTree;
+	
+	@Autowired 
+	HeapSort heapSort;
 
 	@Override
 	public String forBinaryTreeService(String theInts) {
@@ -27,10 +31,16 @@ public class GatewayServiceImp implements GateService {
 			integerList.add( Integer.valueOf( item));
 		}
 		logger.info(" integerList:"+ integerList);
-		strBuff.append( binTree.buildFlatTree( integerList));
+		strBuff.append("Complete binary tree: "+ binTree.buildFlatTree( integerList));
 		strBuff.append("\n");
-		strBuff.append("----------------"+ binTree.buildSortingTree( integerList));
-		
+		strBuff.append("Sorted binary tree"+ binTree.buildSortingTree( integerList));
+		logger.info(strBuff.toString());
+		strBuff.append("\n");
+		strBuff.append("Sorted binary tree"+ binTree.buildSortingTree( integerList));
+		heapSort.resetArray( integerList);
+		strBuff.append("\n");
+		strBuff.append("HeapSort:"+ heapSort.resetArray( integerList).heapSorting().getList());
+		logger.info( strBuff.toString());
 		return strBuff.toString();
 	}
 
